@@ -13,19 +13,22 @@ session_start();
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <h1>Login</h1>
-    <div class="container">
+<body class="bg-light d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg p-4 rounded" style="width: 400px;">
+        <div class="text-center mb-3">
+            <img src="images/puc_logo.png" alt="Logo" class="img-fluid" style="width: 120px;">
+        </div>
+        <h2 class="text-center">Login</h2>
         <form action="" method="POST">
-            <div class="form-group">
-                <label>Email address</label>
-                <input type="email" class="form-control" name="email" placeholder="Enter email" required><br>
+            <div class="mb-3">
+                <label class="form-label">Email address</label>
+                <input type="email" class="form-control" name="email" placeholder="Enter email" required>
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password" required><br>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Enter password" required>
             </div>
-            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" name="submit" class="btn btn-primary w-100">Login</button>
         </form>
     </div>
 </body>
@@ -48,15 +51,10 @@ if(isset($_POST["submit"])){
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['name'] = $row['name'];
             $_SESSION['role'] = $row['role'];
-        
-            if ($_SESSION['role'] == 1) {
-                header("Location: teacher_dashboard.php"); 
-            } else {
-                header("Location: student_dashboard.php");
-            }
+
+            header("Location: " . ($_SESSION['role'] == 1 ? "teacher_dashboard.php" : "student_dashboard.php"));
             exit();
-        }
-         else {
+        } else {
             echo "<script>alert('Invalid Password!');</script>";
         }
     } else {
