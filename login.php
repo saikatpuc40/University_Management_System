@@ -19,7 +19,13 @@ if(isset($_POST["submit"])){
             $_SESSION['name'] = $row['name'];
             $_SESSION['role'] = $row['role'];
 
-            header("Location: " . ($_SESSION['role'] == 1 ? "teacher_dashboard.php" : "student_dashboard.php"));
+            if ($_SESSION['role'] == 1) {
+                header("Location: Teacher/teacher_dashboard.php");
+            } elseif ($_SESSION['role'] == 0) {
+                header("Location: Student/student_dashboard.php");
+            } elseif ($_SESSION['role'] == 2) {
+                header("Location: Admin/admin_dashboard.php");
+            }
             exit();
         } else {
             $message = "Invalid Password!";
