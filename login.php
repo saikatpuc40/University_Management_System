@@ -14,7 +14,7 @@ include 'connection.php';
 <body class="bg-light d-flex justify-content-center align-items-center vh-100">
 <div class="card shadow-lg p-4" style="width:400px;">
   <div class="text-center mb-3">
-    <img src="images/puc_logo.png " class="img-fluid" alt="..." style="width:120px;">
+    <img src="Images/puc_logo.png" class="img-fluid" alt="..." style="width:120px;">
   </div>
 
 
@@ -28,10 +28,9 @@ include 'connection.php';
       <label class="form-label">Password</label>
       <input type="password" class="form-control" name="password" placeholder="Enter Your password">
     </div>
-
     <button type="submit" name="submit" class="btn btn-primary w-100">Submit</button>
   </form>
-  <p class="text-center mt-3">You don't have an account?<a href="register.php">Register</a></p>
+  <p class="text-center mt-3">You don't have an account?<a href="Register/student_register.php">Register</a></p>
 
 
 </div>
@@ -48,11 +47,18 @@ if(isset($_POST["submit"])){
     $password=md5($_POST['password']);
     $sql ="SELECT * FROM students WHERE email='$email' AND password='$password'";
 
-    $student=mysqli_query($conn,$sql);
-    $s=mysqli_fetch_array($student);
-    if($s){
-        header("Location: student/dashboard.php");
+    $Data=mysqli_query($conn,$sql);
+    $result=mysqli_fetch_array($Data);
+    if($result['role']=="Student"){
+        header("Location: Student/dashboard.php");
     }
+    else if($result['role']=="Teacher"){
+        header("Location: Teacher/dashboard.php");
+    }
+    else if($result['role']=="Admin"){
+        header("Location: Admin/dashboard.php");
+    }
+    
     else{
         echo "password ismatch";
     }

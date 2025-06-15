@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include '../connection.php';
 ?>
 
 
@@ -14,11 +14,11 @@ include 'connection.php';
 <body class="bg-light d-flex justify-content-center align-items-center vh-100">
 <div class="card shadow-lg p-4" style="width:400px;">
   <div class="text-center mb-3">
-    <img src="images/puc_logo.png " class="img-fluid" alt="..." style="width:120px;">
+    <img src="Images/puc_logo.png " class="img-fluid" alt="..." style="width:120px;">
   </div>
 
 
-  <h2 class="text-center">Register</h2>
+  <h2 class="text-center">Teacher Register</h2>
 
   <?php
     if(isset($_POST["submit"])){
@@ -26,14 +26,24 @@ include 'connection.php';
       $email = $_POST["email"];
       $contact = $_POST["contact"];
       $password = md5($_POST["password"]);
+      $confirmPassword=md5($_POST['confirm_password']);
+      $role="Teacher";
+      if($password==$confirmPassword){
+        $sql="INSERT INTO students(name,email,contact,role,password) VALUES ('$name','$email','$contact','$role','$password')";
+        if(mysqli_query($conn,$sql)){
+          echo '<div class="alert alert-success">Registration Successfull</div>';
+        }
+        else{
+          echo '<div class="alert alert-danger">Error: '. mysqli_error($conn).' </div>';
+        }
 
-      $sql="INSERT INTO students(name,email,contact,password) VALUES ('$name','$email','$contact','$password')";
-    if(mysqli_query($conn,$sql)){
-      echo '<div class="alert alert-success">Registration Successfull</div>';
-    }
-    else{
-      echo '<div class="alert alert-danger">Error: '. mysqli_error($conn).' </div>';
-    }
+      }
+      else{
+         echo '<div class="alert alert-danger">Password mismatch</div>';
+
+      }
+
+      
     }
 
     
@@ -61,12 +71,16 @@ include 'connection.php';
       <label class="form-label">Password</label>
       <input type="password" class="form-control" name="password" placeholder="Enter Your password">
     </div>
+    <div class="mb-3">
+      <label class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" name="confirm_password" placeholder="Enter Your password">
+    </div>
 
     <button type="submit" name="submit" class="btn btn-primary w-100">Submit</button>
   </form>
 
   
-  <p class="text-center mt-3">Already have an account?<a href="login.php">Login</a></p>
+  <p class="text-center mt-3">Already have an account?<a href="../login.php">Login</a></p>
 
 
 </div>
