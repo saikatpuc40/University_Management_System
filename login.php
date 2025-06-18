@@ -1,8 +1,18 @@
 <?php
-include 'connection.php';
+session_start();
+if(isset($_SESSION['user'])){
+  if($_SESSION['user']=="Admin"){
+    header('Location: Admin/dashboard.php');
+  }
+  else if($_SESSION['user']=="Teacher"){
+    header('Location: Teacher/dashboard.php');
+  }
+  else if($_SESSION['user']=="Student"){
+    header('Location: Student/dashboard.php');
+  }
+}
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,12 +60,18 @@ if(isset($_POST["submit"])){
     $Data=mysqli_query($conn,$sql);
     $result=mysqli_fetch_array($Data);
     if($result['role']=="Student"){
+        $_SESSION['user']="Student";
+        $_SESSION['user_id']=$result['id'];
         header("Location: Student/dashboard.php");
     }
     else if($result['role']=="Teacher"){
+        $_SESSION['user']="Teacher";
+        $_SESSION['user_id']=$result['id'];
         header("Location: Teacher/dashboard.php");
     }
     else if($result['role']=="Admin"){
+        $_SESSION['user']="Admin";
+        $_SESSION['user_id']=$result['id'];
         header("Location: Admin/dashboard.php");
     }
     

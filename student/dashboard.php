@@ -7,5 +7,6 @@
 </head>
 <body>
     <p>Students dashboard</p>
+    <a href="../logout.php">Logout</a>
 </body>
 </html>

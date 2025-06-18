@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-   <h4>Teacher Dashboard</h4> 
+   <h4>Teacher Dashboard</h4>
+   <a href="../logout.php">Logout</a> 
 </body>
 </html>

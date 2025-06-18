@@ -2,7 +2,6 @@
 include '../connection.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +13,7 @@ include '../connection.php';
 <body class="bg-light d-flex justify-content-center align-items-center vh-100">
 <div class="card shadow-lg p-4" style="width:400px;">
   <div class="text-center mb-3">
-    <img src="Images/puc_logo.png " class="img-fluid" alt="..." style="width:120px;">
+    <img src="../Images/puc_logo.png" class="img-fluid" alt="..." style="width:120px;">
   </div>
 
 
@@ -51,9 +50,6 @@ include '../connection.php';
 
   ?>
 
-
-
-
   <form action="" method="post">
     <div class="mb-3">
       <label class="form-label">Name</label>
@@ -79,8 +75,6 @@ include '../connection.php';
     <button type="submit" name="submit" class="btn btn-primary w-100">Submit</button>
   </form>
 
-  
-  <p class="text-center mt-3">Already have an account?<a href="../login.php">Login</a></p>
 
 
 </div>

@@ -14,7 +14,7 @@ include '../connection.php';
 <body class="bg-light d-flex justify-content-center align-items-center vh-100">
 <div class="card shadow-lg p-4" style="width:400px;">
   <div class="text-center mb-3">
-    <img src="Images/puc_logo.png " class="img-fluid" alt="..." style="width:120px;">
+    <img src="../Images/puc_logo.png " class="img-fluid" alt="..." style="width:120px;">
   </div>
 
 
